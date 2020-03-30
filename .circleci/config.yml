@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  say-hello:
+    docker:
+      - image: archlinux/base:latest
+    parameters:
+      to:
+        description: To whom you say hello
+        type: string
+    steps:
+      - run: echo Hello << parameters.to >>!
+
+workflows:
+  version: 2
+  hello-workflow:
+    jobs:
+      - say-hello:
+          to: ~
